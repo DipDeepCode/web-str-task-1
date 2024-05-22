@@ -18,7 +18,7 @@ GET http://localhost:8080/api/todoitems
 
 ###
 # @no-log
-GET http://localhost:8080/api/todoitems/2
+GET http://localhost:8080/api/todoitems/1
 
 ###
 # @no-log
@@ -39,4 +39,4 @@ Content-Type: application/json
 
 ###
 # @no-log
-DELETE http://localhost:8080/api/todoitems/2
+DELETE http://localhost:8080/api/todoitems/1

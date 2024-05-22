@@ -1,0 +1,32 @@
+###
+# @no-log
+POST http://localhost:8080/api/workspaces
+Content-Type: application/json
+
+{
+  "name": "ws2",
+  "description": "ds2"
+}
+
+###
+# @no-log
+GET http://localhost:8080/api/workspaces
+
+###
+# @no-log
+GET http://localhost:8080/api/workspaces/1
+
+###
+# @no-log
+PUT http://localhost:8080/api/workspaces
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "new name",
+  "description": "new description"
+}
+
+###
+# @no-log
+DELETE http://localhost:8080/api/workspaces/1
