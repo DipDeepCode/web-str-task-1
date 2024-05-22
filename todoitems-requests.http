@@ -1,0 +1,42 @@
+###
+# @no-log
+POST http://localhost:8080/api/todoitems
+Content-Type: application/json
+
+{
+"workspaceId": 1,
+"name": "req-name",
+"description": "req-descr",
+"startDateTime": "2024-05-21T16:23:49.59",
+"duration": "PT1H",
+"priority": "HIGH"
+}
+
+###
+# @no-log
+GET http://localhost:8080/api/todoitems
+
+###
+# @no-log
+GET http://localhost:8080/api/todoitems/2
+
+###
+# @no-log
+PUT http://localhost:8080/api/todoitems
+Content-Type: application/json
+
+{
+  "id": 1,
+  "workspaceId": 2,
+  "name": "new name",
+  "description": "new description",
+  "isDone": true,
+  "startDateTime": "2024-06-21T16:23:49.59",
+  "duration": "PT2H",
+  "priority": "HIGH",
+  "isPostponed": true
+}
+
+###
+# @no-log
+DELETE http://localhost:8080/api/todoitems/2
