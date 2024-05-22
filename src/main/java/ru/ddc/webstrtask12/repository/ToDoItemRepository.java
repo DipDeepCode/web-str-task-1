@@ -34,6 +34,13 @@ public class ToDoItemRepository implements CrudRepository<ToDoItem, Long> {
         return jdbcClient.sql("select * from to_do_item").query(ToDoItem.class).list();
     }
 
+    public List<ToDoItem> findAllByWorkspaceId(Long workspaceId) {
+        return jdbcClient.sql("select * from to_do_item where workspace_id = :workspaceId")
+                .param("workspaceId", workspaceId)
+                .query(ToDoItem.class)
+                .list();
+    }
+
     @Override
     public ToDoItem findById(Long id) {
         return jdbcClient
@@ -47,7 +54,7 @@ public class ToDoItemRepository implements CrudRepository<ToDoItem, Long> {
     @Override
     public int update(ToDoItem toDoItem) {
         return jdbcClient
-                .sql("update to_do_item set workspace_id = :workspaceId, name = :name, description = :description, " +
+                .sql("update to_do_item set name = :name, description = :description, " +
                         "is_done = :isDone, start_date_time = :startDateTime, duration = :duration, " +
                         "priority = :priority, is_postponed = :isPostponed where id = :id")
                 .paramSource(toDoItem)

@@ -4,8 +4,8 @@ POST http://localhost:8080/api/workspaces
 Content-Type: application/json
 
 {
-  "name": "ws2",
-  "description": "ds2"
+  "name": "payload name",
+  "description": "payload descr"
 }
 
 ###
@@ -18,15 +18,14 @@ GET http://localhost:8080/api/workspaces/1
 
 ###
 # @no-log
-PUT http://localhost:8080/api/workspaces
+PUT http://localhost:8080/api/workspaces/5
 Content-Type: application/json
 
 {
-  "id": 1,
   "name": "new name",
   "description": "new description"
 }
 
 ###
 # @no-log
-DELETE http://localhost:8080/api/workspaces/1
+DELETE http://localhost:8080/api/workspaces/4

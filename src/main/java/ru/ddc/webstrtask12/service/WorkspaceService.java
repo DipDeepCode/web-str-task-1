@@ -2,7 +2,9 @@ package ru.ddc.webstrtask12.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.ddc.webstrtask12.model.ToDoItem;
 import ru.ddc.webstrtask12.model.Workspace;
+import ru.ddc.webstrtask12.repository.ToDoItemRepository;
 import ru.ddc.webstrtask12.repository.WorkspaceRepository;
 
 import java.util.List;
@@ -11,6 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class WorkspaceService {
     private final WorkspaceRepository workspaceRepository;
+    private final ToDoItemRepository toDoItemRepository;
 
     public Workspace save(Workspace workspace) {
         return workspaceRepository.save(workspace);
@@ -21,10 +24,13 @@ public class WorkspaceService {
     }
 
     public Workspace findById(Long id) {
-        return workspaceRepository.findById(id);
+        Workspace workspace = workspaceRepository.findById(id);
+        workspace.setToDoItems(toDoItemRepository.findAllByWorkspaceId(id));
+        return workspace;
     }
 
-    public int update(Workspace workspace) {
+    public int update(Long id, Workspace workspace) {
+        workspace.setId(id);
         return workspaceRepository.update(workspace);
     }
 
