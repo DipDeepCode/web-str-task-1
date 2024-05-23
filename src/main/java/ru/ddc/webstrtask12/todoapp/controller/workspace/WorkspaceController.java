@@ -1,15 +1,15 @@
-package ru.ddc.webstrtask12.controller.workspace;
+package ru.ddc.webstrtask12.todoapp.controller.workspace;
 
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.ddc.webstrtask12.model.Workspace;
-import ru.ddc.webstrtask12.payload.request.CreateWorkspaceRequest;
-import ru.ddc.webstrtask12.payload.request.UpdateWorkspaceRequest;
-import ru.ddc.webstrtask12.dto.WorkspaceDto;
-import ru.ddc.webstrtask12.service.WorkspaceService;
+import ru.ddc.webstrtask12.todoapp.model.Workspace;
+import ru.ddc.webstrtask12.todoapp.payload.request.CreateWorkspaceRequest;
+import ru.ddc.webstrtask12.todoapp.payload.request.UpdateWorkspaceRequest;
+import ru.ddc.webstrtask12.todoapp.dto.WorkspaceDto;
+import ru.ddc.webstrtask12.todoapp.service.WorkspaceService;
 
 import java.util.List;
 

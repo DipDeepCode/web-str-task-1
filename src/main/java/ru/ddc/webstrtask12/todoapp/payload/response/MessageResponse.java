@@ -1,4 +1,4 @@
-package ru.ddc.webstrtask12.payload.response;
+package ru.ddc.webstrtask12.todoapp.payload.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

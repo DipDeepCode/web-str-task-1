@@ -1,4 +1,4 @@
-package ru.ddc.webstrtask12.repository;
+package ru.ddc.webstrtask12.todoapp.repository;
 
 
 import java.util.List;

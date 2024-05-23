@@ -1,15 +1,15 @@
-package ru.ddc.webstrtask12.controller.todoitem;
+package ru.ddc.webstrtask12.todoapp.controller.todoitem;
 
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.ddc.webstrtask12.dto.ToDoItemDto;
-import ru.ddc.webstrtask12.model.ToDoItem;
-import ru.ddc.webstrtask12.payload.request.CreateToDoItemRequest;
-import ru.ddc.webstrtask12.payload.request.UpdateToDoItemRequest;
-import ru.ddc.webstrtask12.service.ToDoItemService;
+import ru.ddc.webstrtask12.todoapp.dto.ToDoItemDto;
+import ru.ddc.webstrtask12.todoapp.model.ToDoItem;
+import ru.ddc.webstrtask12.todoapp.payload.request.CreateToDoItemRequest;
+import ru.ddc.webstrtask12.todoapp.payload.request.UpdateToDoItemRequest;
+import ru.ddc.webstrtask12.todoapp.service.ToDoItemService;
 
 import java.util.List;
 

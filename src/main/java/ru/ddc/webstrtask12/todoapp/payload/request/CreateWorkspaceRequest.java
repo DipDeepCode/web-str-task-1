@@ -1,4 +1,4 @@
-package ru.ddc.webstrtask12.payload.request;
+package ru.ddc.webstrtask12.todoapp.payload.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UpdateWorkspaceRequest {
+public class CreateWorkspaceRequest {
     private String name;
     private String description;
 }

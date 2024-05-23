@@ -1,4 +1,4 @@
-package ru.ddc.webstrtask12.model;
+package ru.ddc.webstrtask12.todoapp.model;
 
 import org.springframework.stereotype.Component;
 

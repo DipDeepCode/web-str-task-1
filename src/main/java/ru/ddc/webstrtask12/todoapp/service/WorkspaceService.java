@@ -1,9 +1,9 @@
-package ru.ddc.webstrtask12.service;
+package ru.ddc.webstrtask12.todoapp.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.ddc.webstrtask12.model.Workspace;
-import ru.ddc.webstrtask12.repository.WorkspaceRepository;
+import ru.ddc.webstrtask12.todoapp.model.Workspace;
+import ru.ddc.webstrtask12.todoapp.repository.WorkspaceRepository;
 
 import java.util.List;
 

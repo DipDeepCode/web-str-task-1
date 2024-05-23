@@ -1,5 +1,6 @@
-package ru.ddc.webstrtask12.payload.request;
+package ru.ddc.webstrtask12.todoapp.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,14 +11,18 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-public class UpdateToDoItemRequest {
+@AllArgsConstructor
+public class ToDoItemDto {
+    private Long id;
+    private Long workspaceId;
     private String name;
     private String description;
     private Boolean isDone = false;
     private LocalDateTime startDateTime;
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private Duration duration;
     private String priority;
     private Boolean isPostponed = false;
+    private LocalDateTime createdAt = LocalDateTime.now();
 }

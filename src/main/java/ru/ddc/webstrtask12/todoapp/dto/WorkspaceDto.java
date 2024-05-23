@@ -1,4 +1,4 @@
-package ru.ddc.webstrtask12.dto;
+package ru.ddc.webstrtask12.todoapp.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

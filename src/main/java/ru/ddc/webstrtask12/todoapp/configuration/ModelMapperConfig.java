@@ -1,4 +1,4 @@
-package ru.ddc.webstrtask12.configuration;
+package ru.ddc.webstrtask12.todoapp.configuration;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

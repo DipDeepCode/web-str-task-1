@@ -1,4 +1,4 @@
-package ru.ddc.webstrtask12.repository;
+package ru.ddc.webstrtask12.todoapp.repository;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.simple.JdbcClient;
@@ -6,7 +6,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import ru.ddc.webstrtask12.model.Workspace;
+import ru.ddc.webstrtask12.todoapp.model.Workspace;
 
 import java.util.List;
 
