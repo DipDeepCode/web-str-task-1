@@ -1,41 +1,39 @@
-###
+### create
 # @no-log
 POST http://localhost:8080/api/workspaces/1/todoitems
 Content-Type: application/json
 
 {
-  "name": "req name",
-  "description": "req descr",
-  "isDone": false,
+  "name": "item name",
+  "description": "item description",
   "startDateTime": "2024-06-21T16:23:49.59",
   "duration": "PT2H",
-  "priority": "LOW",
-  "isPostponed": false
+  "priority": "LOW"
 }
 
-###
+### findByWorkspaceId
 # @no-log
 GET http://localhost:8080/api/workspaces/1/todoitems
 
-###
+### findById
 # @no-log
-GET http://localhost:8080/api/todoitems/11
+GET http://localhost:8080/api/todoitems/2
 
-###
+### update
 # @no-log
-PUT http://localhost:8080/api/todoitems/11
+PUT http://localhost:8080/api/todoitems/2
 Content-Type: application/json
 
 {
-  "name": "new name",
-  "description": "new description",
+  "name": "new item name",
+  "description": "new item description",
   "isDone": true,
   "startDateTime": "2024-06-21T16:23:49.59",
-  "duration": "PT2H",
+  "duration": "PT5H",
   "priority": "HIGH",
   "isPostponed": true
 }
 
-###
+### delete
 # @no-log
-DELETE http://localhost:8080/api/todoitems/10
+DELETE http://localhost:8080/api/todoitems/2

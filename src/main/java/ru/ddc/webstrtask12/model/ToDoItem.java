@@ -1,6 +1,5 @@
 package ru.ddc.webstrtask12.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,7 +19,6 @@ public class ToDoItem {
     private String description;
     private Boolean isDone = false;
     private LocalDateTime startDateTime;
-    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private Duration duration;
     private String priority;
     private Boolean isPostponed = false;

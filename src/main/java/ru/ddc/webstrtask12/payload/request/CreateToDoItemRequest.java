@@ -12,9 +12,7 @@ import java.time.LocalDateTime;
 public class CreateToDoItemRequest {
     private String name;
     private String description;
-    private Boolean isDone = false;
     private LocalDateTime startDateTime;
     private Duration duration;
     private String priority;
-    private Boolean isPostponed = false;
 }

@@ -25,9 +25,10 @@ public class ToDoItemService {
         return toDoItemRepository.findById(id);
     }
 
-    public int update(Long id, ToDoItem toDoItem) {
+    public ToDoItem update(Long id, ToDoItem toDoItem) {
         toDoItem.setId(id);
-        return toDoItemRepository.update(toDoItem);
+        toDoItemRepository.update(toDoItem);
+        return findById(id);
     }
 
     public int delete(Long id) {

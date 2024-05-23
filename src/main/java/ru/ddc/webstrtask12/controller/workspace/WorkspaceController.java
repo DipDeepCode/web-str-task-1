@@ -1,4 +1,4 @@
-package ru.ddc.webstrtask12.controller;
+package ru.ddc.webstrtask12.controller.workspace;
 
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;

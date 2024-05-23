@@ -1,9 +1,11 @@
-package ru.ddc.webstrtask12.controller;
+package ru.ddc.webstrtask12.controller.workspace;
 
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.SimpleRepresentationModelAssembler;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.stereotype.Component;
+import ru.ddc.webstrtask12.controller.todoitem.ToDoItemController;
 import ru.ddc.webstrtask12.dto.WorkspaceDto;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;

@@ -1,15 +1,17 @@
-package ru.ddc.webstrtask12.controller;
+package ru.ddc.webstrtask12.controller.todoitem;
 
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.ddc.webstrtask12.dto.ToDoItemDto;
 import ru.ddc.webstrtask12.model.ToDoItem;
 import ru.ddc.webstrtask12.payload.request.CreateToDoItemRequest;
 import ru.ddc.webstrtask12.payload.request.UpdateToDoItemRequest;
 import ru.ddc.webstrtask12.service.ToDoItemService;
 
-import java.net.URI;
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -17,34 +19,43 @@ import java.net.URI;
 public class ToDoItemController {
     private final ToDoItemService toDoItemService;
     private final ModelMapper modelMapper;
+    private final ToDoItemDtoModelAssembler assembler;
 
     @PostMapping("/workspaces/{workspaceId}/todoitems")
     public ResponseEntity<?> createToDoItem(@PathVariable("workspaceId") Long workspaceId,
                                             @RequestBody CreateToDoItemRequest request) {
         ToDoItem toDoItem = toDoItemService.save(workspaceId, modelMapper.map(request, ToDoItem.class));
-        return ResponseEntity
-                .created(URI.create("http://localhost:8080/api/todoitems/%d".formatted(toDoItem.getId())))
-                .body(toDoItem);
+        ToDoItemDto toDoItemDto = modelMapper.map(toDoItem, ToDoItemDto.class);
+        return ResponseEntity.status(HttpStatus.CREATED).body(assembler.toModel(toDoItemDto));
     }
 
     @GetMapping("/workspaces/{workspaceId}/todoitems")
     public ResponseEntity<?> findToDoItemsByWorkspaceId(@PathVariable Long workspaceId) {
-        return ResponseEntity.ok().body(toDoItemService.findAll(workspaceId));
+        List<ToDoItem> toDoItems = toDoItemService.findAll(workspaceId);
+        List<ToDoItemDto> toDoItemDtos = toDoItems.stream()
+                .map(toDoItem -> modelMapper.map(toDoItem, ToDoItemDto.class))
+                .toList();
+        return ResponseEntity.ok().body(assembler.toCollectionModel(toDoItemDtos));
     }
 
     @GetMapping("/todoitems/{id}")
     public ResponseEntity<?> findToDoItem(@PathVariable("id") Long id) {
-        return ResponseEntity.ok().body(toDoItemService.findById(id));
+        ToDoItem toDoItem = toDoItemService.findById(id);
+        ToDoItemDto toDoItemDto = modelMapper.map(toDoItem, ToDoItemDto.class);
+        return ResponseEntity.ok().body(assembler.toModel(toDoItemDto));
     }
 
     @PutMapping("/todoitems/{id}")
     public ResponseEntity<?> updateToDoItem(@PathVariable("id") Long id,
                                             @RequestBody UpdateToDoItemRequest request) {
-        return ResponseEntity.ok().body(toDoItemService.update(id, modelMapper.map(request, ToDoItem.class)));
+        ToDoItem toDoItem = toDoItemService.update(id, modelMapper.map(request, ToDoItem.class));
+        ToDoItemDto toDoItemDto = modelMapper.map(toDoItem, ToDoItemDto.class);
+        return ResponseEntity.ok().body(assembler.toModel(toDoItemDto));
     }
 
     @DeleteMapping("/todoitems/{id}")
     public ResponseEntity<?> deleteToDoItem(@PathVariable("id") Long id) {
-        return ResponseEntity.ok().body(toDoItemService.delete(id));
+        toDoItemService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }
