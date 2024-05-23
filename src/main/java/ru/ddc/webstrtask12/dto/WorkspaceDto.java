@@ -1,23 +1,19 @@
-package ru.ddc.webstrtask12.model;
+package ru.ddc.webstrtask12.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.hateoas.RepresentationModel;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Workspace {
+public class WorkspaceDto {
     private Long id;
     private String name;
     private String description;
-    private List<ToDoItem> toDoItems = new ArrayList<>();
     private LocalDateTime createdAt = LocalDateTime.now();
 }

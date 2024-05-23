@@ -1,0 +1,31 @@
+### create
+# @no-log
+POST http://localhost:8080/api/workspaces
+Content-Type: application/json
+
+{
+  "name": "workspace name",
+  "description": "workspace description"
+}
+
+### findAll
+# @no-log
+GET http://localhost:8080/api/workspaces
+
+### findById
+# @no-log
+GET http://localhost:8080/api/workspaces/1
+
+### update
+# @no-log
+PUT http://localhost:8080/api/workspaces/1
+Content-Type: application/json
+
+{
+  "name": "new workspace name",
+  "description": "new workspace description"
+}
+
+### deleteById
+# @no-log
+DELETE http://localhost:8080/api/workspaces/2

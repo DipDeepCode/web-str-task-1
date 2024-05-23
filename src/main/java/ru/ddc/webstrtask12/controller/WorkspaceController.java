@@ -2,14 +2,16 @@ package ru.ddc.webstrtask12.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.ddc.webstrtask12.model.Workspace;
 import ru.ddc.webstrtask12.payload.request.CreateWorkspaceRequest;
 import ru.ddc.webstrtask12.payload.request.UpdateWorkspaceRequest;
+import ru.ddc.webstrtask12.dto.WorkspaceDto;
 import ru.ddc.webstrtask12.service.WorkspaceService;
 
-import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -17,33 +19,48 @@ import java.net.URI;
 public class WorkspaceController {
     private final WorkspaceService workspaceService;
     private final ModelMapper modelMapper;
+    private final WorkspaceDtoModelAssembler assembler;
 
-    @PostMapping("/workspaces")
+    @PostMapping(value = "/workspaces", produces = {"application/hal+json"})
     public ResponseEntity<?> createWorkspace(@RequestBody CreateWorkspaceRequest request) {
         Workspace workspace = workspaceService.save(modelMapper.map(request, Workspace.class));
-        return ResponseEntity
-                .created(URI.create("http://localhost:8080/api/workspaces/%d".formatted(workspace.getId())))
-                .body(workspace);
+
+//        URI uri = MvcUriComponentsBuilder.fromController(getClass())
+//                        .path("/{id}")
+//                        .buildAndExpand(workspace.getId())
+//                        .toUri();
+
+        WorkspaceDto workspaceDto = modelMapper.map(workspace, WorkspaceDto.class);
+        return ResponseEntity.status(HttpStatus.CREATED).body(assembler.toModel(workspaceDto));
     }
 
-    @GetMapping("/workspaces")
+    @GetMapping(value = "/workspaces", produces = {"application/hal+json"})
     public ResponseEntity<?> findWorkspaces() {
-        return ResponseEntity.ok().body(workspaceService.findAll());
+        List<WorkspaceDto> resources = workspaceService.findAll()
+                .stream()
+                .map(workspace -> modelMapper.map(workspace, WorkspaceDto.class))
+                .toList();
+        return ResponseEntity.ok().body(assembler.toCollectionModel(resources));
     }
 
-    @GetMapping("/workspaces/{id}")
+    @GetMapping(value = "/workspaces/{id}", produces = {"application/hal+json"})
     public ResponseEntity<?> findWorkspace(@PathVariable("id") Long id) {
-        return ResponseEntity.ok().body(workspaceService.findById(id));
+        Workspace workspace = workspaceService.findById(id);
+        WorkspaceDto workspaceDto = modelMapper.map(workspace, WorkspaceDto.class);
+        return ResponseEntity.ok().body(assembler.toModel(workspaceDto));
     }
 
     @PutMapping("/workspaces/{id}")
     public ResponseEntity<?> updateWorkspace(@PathVariable("id") Long id,
                                              @RequestBody UpdateWorkspaceRequest request) {
-        return ResponseEntity.ok().body(workspaceService.update(id, modelMapper.map(request, Workspace.class)));
+        Workspace workspace = workspaceService.update(id, modelMapper.map(request, Workspace.class));
+        WorkspaceDto workspaceDto = modelMapper.map(workspace, WorkspaceDto.class);
+        return ResponseEntity.ok().body(assembler.toModel(workspaceDto));
     }
 
     @DeleteMapping("/workspaces/{id}")
     public ResponseEntity<?> deleteWorkspace(@PathVariable("id") Long id) {
-        return ResponseEntity.ok().body(workspaceService.delete(id));
+        workspaceService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }
