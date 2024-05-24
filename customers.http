@@ -1,12 +1,12 @@
 ### create
 # @no-log
-POST http://localhost:8080/api/customers/register
+POST http://localhost:8080/api/register
 Content-Type: application/json
 
 {
-  "username": "username2",
-  "email": "email2@mail.ru",
-  "password": "password2"
+  "username": "username",
+  "email": "email@mail.ru",
+  "password": "password"
 }
 
 ### login

@@ -18,9 +18,6 @@ public class CustomerDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Customer customer = customerRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + username));
-        System.out.println(customer);
-        CustomerDetails customerDetails = new CustomerDetails(customer);
-        System.out.println(customerDetails);
-        return customerDetails;
+        return new CustomerDetails(customer);
     }
 }
