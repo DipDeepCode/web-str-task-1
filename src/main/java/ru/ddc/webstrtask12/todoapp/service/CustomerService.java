@@ -17,7 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CustomerService {
     private final CustomerRepository customerRepository;
-    private final PasswordEncoder passwordEncoder;
+//    private final PasswordEncoder passwordEncoder;
     private final SignupRequestValidator signupRequestValidator;
 
     public Customer findById(Long id) {
@@ -28,16 +28,16 @@ public class CustomerService {
         return customerRepository.findAll();
     }
 
-    public Customer createCustomer(SignupRequest request, BindingResult bindingResult) throws BindException {
-        signupRequestValidator.validate(request, bindingResult);
-        if (bindingResult.hasErrors()) {
-            throw new BindException(bindingResult);
-        } else {
-            Customer customer = ModelFactory.getNewCustomer(
-                    request.getUsername(),
-                    passwordEncoder.encode(request.getPassword()),
-                    request.getEmail());
-            return customerRepository.save(customer);
-        }
-    }
+//    public Customer createCustomer(SignupRequest request, BindingResult bindingResult) throws BindException {
+//        signupRequestValidator.validate(request, bindingResult);
+//        if (bindingResult.hasErrors()) {
+//            throw new BindException(bindingResult);
+//        } else {
+//            Customer customer = ModelFactory.getNewCustomer(
+//                    request.getUsername(),
+//                    passwordEncoder.encode(request.getPassword()),
+//                    request.getEmail());
+//            return customerRepository.save(customer);
+//        }
+//    }
 }

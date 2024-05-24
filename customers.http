@@ -4,9 +4,9 @@ POST http://localhost:8080/api/register
 Content-Type: application/json
 
 {
-  "username": "username",
-  "email": "email@mail.ru",
-  "password": "password"
+  "username": "username1",
+  "email": "email1@mail.ru",
+  "password": "password1"
 }
 
 ### login
@@ -36,4 +36,4 @@ GET http://localhost:8080/api/customers/1
 ### test1
 # @no-log
 GET http://localhost:8080/api/test
-Authorization: Basic username password
+Authorization: Basic user password
