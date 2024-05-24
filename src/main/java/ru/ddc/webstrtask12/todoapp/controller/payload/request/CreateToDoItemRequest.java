@@ -1,4 +1,4 @@
-package ru.ddc.webstrtask12.todoapp.payload.request;
+package ru.ddc.webstrtask12.todoapp.controller.payload.request;
 
 import lombok.*;
 

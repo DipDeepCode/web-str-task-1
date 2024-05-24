@@ -15,6 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 public class Workspace {
     private Long id;
+    private Long customerId;
     private String name;
     private String description;
     private List<ToDoItem> toDoItems = new ArrayList<>();

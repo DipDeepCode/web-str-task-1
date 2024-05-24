@@ -18,7 +18,7 @@ public class WorkspaceRepository implements CrudRepository<Workspace, Long> {
     @Transactional
     @Override
     public Workspace save(Workspace model) {
-        KeyHolder keyHolder = new GeneratedKeyHolder();
+        KeyHolder keyHolder = new GeneratedKeyHolder(); // TODO customer id
         jdbcClient.sql("insert into workspace (name, description, created_at) values (:name, :description, :createdAt)")
                 .paramSource(model)
                 .update(keyHolder);
@@ -42,7 +42,7 @@ public class WorkspaceRepository implements CrudRepository<Workspace, Long> {
     @Transactional
     @Override
     public int update(Workspace workspace) {
-        return jdbcClient.sql("update WORKSPACE set name = :name, description = :description where id = :id")
+        return jdbcClient.sql("update workspace set name = :name, description = :description where id = :id")
                 .paramSource(workspace)
                 .update();
     }
@@ -50,6 +50,13 @@ public class WorkspaceRepository implements CrudRepository<Workspace, Long> {
     @Transactional
     @Override
     public int deleteById(Long id) {
-        return jdbcClient.sql("delete from WORKSPACE where id = :id").param("id", id).update();
+        return jdbcClient.sql("delete from workspace where id = :id").param("id", id).update();
+    }
+
+    public List<Workspace> findAllByCustomerId(Long customerId) {
+        return jdbcClient.sql("select * from workspace where customer_id = :customerId")
+                .param("customerId", customerId)
+                .query(Workspace.class)
+                .list();
     }
 }

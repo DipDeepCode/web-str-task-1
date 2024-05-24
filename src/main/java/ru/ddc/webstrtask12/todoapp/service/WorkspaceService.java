@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import ru.ddc.webstrtask12.todoapp.model.Workspace;
 import ru.ddc.webstrtask12.todoapp.repository.WorkspaceRepository;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -32,5 +33,9 @@ public class WorkspaceService {
 
     public int delete(Long id) {
         return workspaceRepository.deleteById(id);
+    }
+
+    public List<Workspace> findAllByCustomerId(Long customerId) {
+        return null;
     }
 }

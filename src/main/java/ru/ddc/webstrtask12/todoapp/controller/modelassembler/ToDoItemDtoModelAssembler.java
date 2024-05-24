@@ -1,11 +1,12 @@
-package ru.ddc.webstrtask12.todoapp.controller.todoitem;
+package ru.ddc.webstrtask12.todoapp.controller.modelassembler;
 
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.SimpleRepresentationModelAssembler;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.stereotype.Component;
-import ru.ddc.webstrtask12.todoapp.controller.workspace.WorkspaceController;
+import ru.ddc.webstrtask12.todoapp.controller.ToDoItemController;
+import ru.ddc.webstrtask12.todoapp.controller.WorkspaceController;
 import ru.ddc.webstrtask12.todoapp.dto.ToDoItemDto;
 
 import java.util.Collection;
@@ -21,10 +22,10 @@ public class ToDoItemDtoModelAssembler implements SimpleRepresentationModelAssem
         if (content != null) {
             Long id = content.getId();
             Long workspaceId = content.getWorkspaceId();
-            resource.add(WebMvcLinkBuilder.linkTo(methodOn(WorkspaceController.class).findWorkspaces())
+            resource.add(WebMvcLinkBuilder.linkTo(methodOn(WorkspaceController.class).getWorkspaces())
                     .slash(workspaceId)
                     .withRel("workspace"));
-            resource.add(linkTo(methodOn(ToDoItemController.class).findToDoItemsByWorkspaceId(workspaceId))
+            resource.add(WebMvcLinkBuilder.linkTo(methodOn(ToDoItemController.class).findToDoItemsByWorkspaceId(workspaceId))
                     .slash(id)
                     .withSelfRel());
         }

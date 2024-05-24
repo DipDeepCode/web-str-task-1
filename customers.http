@@ -1,0 +1,39 @@
+### create
+# @no-log
+POST http://localhost:8080/api/customers/register
+Content-Type: application/json
+
+{
+  "username": "username2",
+  "email": "email2@mail.ru",
+  "password": "password2"
+}
+
+### login
+# @no-log
+POST http://localhost:8080/api/customers/login
+Content-Type: application/json
+
+{
+  "username": "username",
+  "password": "password"
+}
+
+### logout
+# @no-log
+POST http://localhost:8080/api/auth/logout
+
+### getAll
+# @no-log
+GET http://localhost:8080/api/customers
+Authorization: Basic username password
+
+
+### getById
+# @no-log
+GET http://localhost:8080/api/customers/1
+
+### test1
+# @no-log
+GET http://localhost:8080/api/test
+Authorization: Basic username password

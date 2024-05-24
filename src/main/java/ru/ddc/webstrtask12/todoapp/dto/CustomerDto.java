@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import ru.ddc.webstrtask12.todoapp.model.Role;
 
 import java.time.LocalDateTime;
 
@@ -11,10 +12,11 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class WorkspaceDto {
+public class CustomerDto {
     private Long id;
-    private Long customerId;
-    private String name;
-    private String description;
+    private String username;
+    private String email;
+    private Role role;
     private LocalDateTime createdAt = LocalDateTime.now();
+    private Boolean isNonLocked = true;
 }

@@ -1,13 +1,14 @@
-package ru.ddc.webstrtask12.todoapp.controller.workspace;
+package ru.ddc.webstrtask12.todoapp.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.ddc.webstrtask12.todoapp.controller.modelassembler.WorkspaceDtoModelAssembler;
 import ru.ddc.webstrtask12.todoapp.model.Workspace;
-import ru.ddc.webstrtask12.todoapp.payload.request.CreateWorkspaceRequest;
-import ru.ddc.webstrtask12.todoapp.payload.request.UpdateWorkspaceRequest;
+import ru.ddc.webstrtask12.todoapp.controller.payload.request.CreateWorkspaceRequest;
+import ru.ddc.webstrtask12.todoapp.controller.payload.request.UpdateWorkspaceRequest;
 import ru.ddc.webstrtask12.todoapp.dto.WorkspaceDto;
 import ru.ddc.webstrtask12.todoapp.service.WorkspaceService;
 
@@ -35,7 +36,7 @@ public class WorkspaceController {
     }
 
     @GetMapping(value = "/workspaces", produces = {"application/hal+json"})
-    public ResponseEntity<?> findWorkspaces() {
+    public ResponseEntity<?> getWorkspaces() {
         List<WorkspaceDto> resources = workspaceService.findAll()
                 .stream()
                 .map(workspace -> modelMapper.map(workspace, WorkspaceDto.class))
@@ -43,8 +44,17 @@ public class WorkspaceController {
         return ResponseEntity.ok().body(assembler.toCollectionModel(resources));
     }
 
+    @GetMapping(value = "customers/{customerId}/workspaces", produces = {"application/hal+json"})
+    public ResponseEntity<?> getWorkspacesByCustomerId(@PathVariable("customerId") Long customerId) {
+        List<WorkspaceDto> resources = workspaceService.findAllByCustomerId(customerId)
+                .stream()
+                .map(workspace -> modelMapper.map(workspace, WorkspaceDto.class))
+                .toList();
+        return ResponseEntity.ok().body(assembler.toCollectionModel(resources));
+    }
+
     @GetMapping(value = "/workspaces/{id}", produces = {"application/hal+json"})
-    public ResponseEntity<?> findWorkspace(@PathVariable("id") Long id) {
+    public ResponseEntity<?> getWorkspace(@PathVariable("id") Long id) {
         Workspace workspace = workspaceService.findById(id);
         WorkspaceDto workspaceDto = modelMapper.map(workspace, WorkspaceDto.class);
         return ResponseEntity.ok().body(assembler.toModel(workspaceDto));
